@@ -3,9 +3,9 @@ from random import randint
 def get_numbers_ticket(min: int, max: int, quantity: int) -> list:
 
   if min < 1 or max > 100:
-    return 
+    return []
   if quantity < 1 or quantity > max - min + 1:
-    return 
+    return []
 
   lottery_numbers = set() 
   while len(lottery_numbers) < quantity:
