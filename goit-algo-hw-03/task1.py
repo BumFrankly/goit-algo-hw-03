@@ -2,7 +2,10 @@ from datetime import datetime
 
 def get_days_from_today(date):
 
-  date_obj = datetime.strptime(date, '%Y-%m-%d')
+  try:
+    date_obj = datetime.strptime(date, '%Y-%m-%d')
+  except ValueError:
+    raise ValueError("Неправильний формат дати. Потрібно YYYY-MM-DD.")
 
   today = datetime.today()
 
@@ -11,6 +14,9 @@ def get_days_from_today(date):
 
   return days_from_today
 
-date = '2020-10-09'
-days_from_today = get_days_from_today(date)
-print(f"Количество дней от {date} до сегодня: {days_from_today}")
+try:
+  date = '2020-10-09'
+  days_from_today = get_days_from_today(date)
+  print(f"Кількість днів від {date} до сьогодні: {days_from_today}")
+except ValueError as e:
+  print(e)
