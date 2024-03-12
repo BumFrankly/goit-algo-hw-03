@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 
 def get_upcoming_birthdays(users):
-
   upcoming_birthdays = []
   today = datetime.today().date()
 
@@ -15,9 +14,9 @@ def get_upcoming_birthdays(users):
 
     if days_until_birthday <= 7:
       congratulation_date = birthday_this_year
- 
-      if birthday_this_year.weekday() in [5, 6]:
-        congratulation_date += timedelta(days=7 - birthday_this_year.weekday())
+
+      if birthday_this_year.weekday() == 5: 
+        congratulation_date += timedelta(days=2) 
 
       upcoming_birthdays.append({
         "name": user["name"],
@@ -27,8 +26,8 @@ def get_upcoming_birthdays(users):
   return upcoming_birthdays
 
 users = [
-    {"name": "Олена", "birthday": "2024.03.13"},
-    {"name": "Вікторія", "birthday": "2024.03.19"}
+  {"name": "Олена", "birthday": "2024.03.13"},
+  {"name": "Вікторія", "birthday": "2024.03.19"}
 ]
 
 upcoming_birthdays = get_upcoming_birthdays(users)
