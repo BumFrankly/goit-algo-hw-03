@@ -11,6 +11,9 @@ def get_upcoming_birthdays(users):
         if next_birthday < today:
             next_birthday = next_birthday.replace(year=today.year + 1)
 
+        while next_birthday.weekday() >= 5:  
+            next_birthday += timedelta(days=1)
+
         days_until_birthday = (next_birthday - today).days
         if 0 <= days_until_birthday <= 7:
             upcoming_birthdays.append({
@@ -20,20 +23,22 @@ def get_upcoming_birthdays(users):
 
     return upcoming_birthdays
 
-users = [{"name": "Jane Smith", "birthday": "1990.03.10"},
-        {"name": "Nick Darsel", "birthday": "1984.03.11"},
-        {"name": "Liam Smith", "birthday": "1995.03.12"},
-	{"name": "Mohel Smith", "birthday": "1995.03.13"},
-        {"name": "John Dark", "birthday": "1985.03.14"},
-        {"name": "Mary Dark", "birthday": "1985.03.15"},
-        {"name": "Derek Dark", "birthday": "1985.03.16"},
-        {"name": "Jane Smith", "birthday": "1990.03.17"}, 
-        {"name": "Liam Smith", "birthday": "1995.03.18"},
-	{"name": "Mohel Smith", "birthday": "1995.03.19"},
-        {"name": "John Dark", "birthday": "1985.03.20"},
-        {"name": "Mary Dark", "birthday": "1985.03.21"},
-        {"name": "Derek Dark", "birthday": "1985.03.22"},
-        {"name": "Jane Smith", "birthday": "1990.03.23"}]
+users = [
+    {"name": "Jane Smith", "birthday": "1990.03.10"},
+    {"name": "Nick Darsel", "birthday": "1984.03.11"},
+    {"name": "Liam Smith", "birthday": "1995.03.12"},
+    {"name": "Mohel Smith", "birthday": "1995.03.13"},
+    {"name": "John Dark", "birthday": "1985.03.14"},
+    {"name": "Mary Dark", "birthday": "1985.03.15"},
+    {"name": "Derek Dark", "birthday": "1985.03.16"},
+    {"name": "Jane Smith", "birthday": "1990.03.17"}, 
+    {"name": "Liam Smith", "birthday": "1995.03.18"},
+    {"name": "Mohel Smith", "birthday": "1995.03.19"},
+    {"name": "John Dark", "birthday": "1985.03.20"},
+    {"name": "Mary Dark", "birthday": "1985.03.21"},
+    {"name": "Derek Dark", "birthday": "1985.03.22"},
+    {"name": "Jane Smith", "birthday": "1990.03.23"}
+]
 
 upcoming_birthdays = get_upcoming_birthdays(users)
 print("Список привітань на цьому тижні:", upcoming_birthdays)
